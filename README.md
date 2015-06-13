@@ -1,6 +1,7 @@
 # Source-Engine-SDK
 
 Setup like this
+
       void SetupIndexes()
       {
       	using namespace indexes;
