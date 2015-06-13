@@ -25,7 +25,7 @@ using namespace std;
 
 #include "libraries\vmt.h"
 
-#include "structs\angle.h"
+#include "structs\vector.h"
 #include "structs\vmatrix.h"
 #include "structs\baseentity.h"
 #include "structs\cliententlist.h"
@@ -50,7 +50,7 @@ using namespace std;
 
 #include "libraries\interfaces.h"
 
-
+#include "hooks.h"
 void StartCheat();
 BOOL WINAPI DllMain(HINSTANCE Instance, DWORD Reason, LPVOID Reserved)
 {
@@ -63,7 +63,7 @@ BOOL WINAPI DllMain(HINSTANCE Instance, DWORD Reason, LPVOID Reserved)
 		HMENU hMenu = GetSystemMenu(hwnd, FALSE);
 		if (hMenu) DeleteMenu(hMenu, SC_CLOSE, MF_BYCOMMAND);
 
-		SetConsoleTitle("[CheatName]: Console");
+		SetConsoleTitle("[BHOP]: Console");
 		freopen("CONIN$", "r", stdin);
 		freopen("CONOUT$", "w", stdout);
 		Interfaces.GetInterfaces();

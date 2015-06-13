@@ -26,15 +26,15 @@ public:
 		return ((Fn)VMT.GetFunction(this, indexes::ClientCmd))(this, Command);
 	}
 
-	void SetViewAngles( Angle& Angles )
+	void SetViewAngles( Vector& Angles )
 	{
-		typedef void(__thiscall* Fn)(void*, Angle&);
+		typedef void(__thiscall* Fn)(void*, Vector&);
 		return ((Fn)VMT.GetFunction(this, indexes::SetViewAngles))(this, Angles);
 	}
 
-	void GetViewAngles(Angle& angle)
+	void GetViewAngles(Vector& angle)
 	{
-		typedef void(__thiscall* Fn)(void*, Angle&);
+		typedef void(__thiscall* Fn)(void*, Vector&);
 		return ((Fn)VMT.GetFunction(this, indexes::GetViewAngles))(this,angle);
 	}
 

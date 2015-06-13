@@ -9,15 +9,12 @@ public:
 	CPanel* Panel;
 	CSurface* Surface;
 	CTrace* Trace;
-	void* ClientMode;
 	CGlobalVarsBase* Globals;
 	void GetInterfaces()
 	{
 		Engine = (CEngine*)GetPointer("engine.dll", "VEngineClient");
 		Trace = (CTrace*)GetPointer("engine.dll", "EngineTraceClient");
 		Client = (CClient*)GetPointer("client.dll", "VClient");
-		ClientMode = *(void**)((DWORD)GetModuleHandleA("client.dll") + 0x4AA8B8C);//
-		printf("ClientMode Found: 0x%X\n", (DWORD)ClientMode);
 		ClientEntList = (CClientEntityList*)GetPointer("client.dll", "VClientEntityList");
 		ModelInfo = (CModelInfo*)GetPointer("engine.dll","VModelInfoClient");
 		Panel = (CPanel*)GetPointer("vgui2.dll","VGUI_Panel");
