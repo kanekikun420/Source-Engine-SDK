@@ -5,6 +5,7 @@ public:
 	VectorAligned& operator=(const Vector &vOther)
 	{
 		Init(vOther.x, vOther.y, vOther.z);
+		w	= 0.f;
 		return *this;
 	}
 	float w;
@@ -36,16 +37,15 @@ struct Ray_t
 
 private:
 };
-
 struct trace_t
 {
 	Vector start;
 	Vector end;
-	BYTE plane[20];
-	float flFraction;
+	BYTE plane[29];
+	float fraction;
 	int contents;
 	WORD dispFlags;
-	bool allSolid;
+	bool allsolid;
 	bool startSolid;
 	float fractionLeftSolid;
 	BYTE surface[8];
@@ -91,6 +91,6 @@ public:
 	void TraceRay(const Ray_t &ray, unsigned int fMask, ITraceFilter* filter, trace_t *trace)
 	{
 		typedef void(__thiscall* fn)(void*, const Ray_t&, unsigned int, ITraceFilter*, trace_t*);
-		VMT.getvfunc<fn>(this, 4)(this, ray, fMask, filter, trace);
+		VMT.getvfunc<fn>(this, 5)(this, ray, fMask, filter, trace);
 	}
 };

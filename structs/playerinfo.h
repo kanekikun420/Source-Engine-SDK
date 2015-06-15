@@ -9,4 +9,5 @@ typedef struct player_info_s
 	bool			ishltv;
 	unsigned long	customFiles[4];
 	unsigned char	filesDownloaded;
+	byte buffer[200];
 } player_info_t;

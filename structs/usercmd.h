@@ -1,7 +1,34 @@
 #pragma once
+#include "../crc32.h"
 class CUserCmd
 {
 public:
+	CRC32_t GetChecksum(void)
+	{
+		CRC32_t crc;
+
+		CRC32_Init(&crc);
+		CRC32_ProcessBuffer(&crc, &command_number, sizeof(command_number));
+		CRC32_ProcessBuffer(&crc, &tick_count, sizeof(tick_count));
+		CRC32_ProcessBuffer(&crc, &viewangles, sizeof(viewangles));
+		CRC32_ProcessBuffer(&crc, &aimdirection, sizeof(aimdirection));
+		CRC32_ProcessBuffer(&crc, &forwardmove, sizeof(forwardmove));
+		CRC32_ProcessBuffer(&crc, &sidemove, sizeof(sidemove));
+		CRC32_ProcessBuffer(&crc, &upmove, sizeof(upmove));
+		CRC32_ProcessBuffer(&crc, &buttons, sizeof(buttons));
+		CRC32_ProcessBuffer(&crc, &impulse, sizeof(impulse));
+		CRC32_ProcessBuffer(&crc, &weaponselect, sizeof(weaponselect));
+		CRC32_ProcessBuffer(&crc, &weaponsubtype, sizeof(weaponsubtype));
+		CRC32_ProcessBuffer(&crc, &random_seed, sizeof(random_seed));
+		CRC32_ProcessBuffer(&crc, &mousedx, sizeof(mousedx));
+		CRC32_ProcessBuffer(&crc, &mousedy, sizeof(mousedy));
+		//CRC32_ProcessBuffer( &crc, &hasbeenpredicted, sizeof( hasbeenpredicted ) );
+		//CRC32_ProcessBuffer( &crc, &headangles, sizeof( headangles ) );
+		//CRC32_ProcessBuffer( &crc, &headoffset, sizeof( headoffset ) );        
+		CRC32_Final(&crc);
+
+		return crc;
+	}
 	char pad_0x0000[0x4]; //0x0000	
 	int		command_number;		// 0x04 For matching server and client commands for debugging
 	int		tick_count;			// 0x08 the tick the client created this command
@@ -19,6 +46,7 @@ public:
 	short	mousedy;			// 0x46 mouse accum in y from create move
 	bool	hasbeenpredicted;	// 0x48 Client only, tracks whether we've predicted this command at least once
 	char	pad_0x4C[0x18];		// 0x4C Current sizeof( usercmd ) =  100  = 0x64
+
 };
 
 /*

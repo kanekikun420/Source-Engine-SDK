@@ -21,10 +21,8 @@ public:
 
 	int Index()
 	{
-		void* networkable = (void*)(this + 0x8);
-		typedef int(__thiscall* OriginalFn)(void*);
-		return ((OriginalFn)VMT.GetFunction(networkable, 9))(networkable);
-		//return *(int*)(this + 64);
+		
+		return *(int*)((DWORD)this + 64);
 	}
 
 	int GetFlags()
@@ -77,7 +75,7 @@ public:
 	{
 		void* networkable = (void*)(this + 0x8);
 		typedef int(__thiscall* OriginalFn)(PVOID);
-		return ((OriginalFn)VMT.GetFunction(networkable, 9))(networkable);
+		return ((OriginalFn)VMT.GetFunction(this, 76))(this);
 	}
 
 	bool SetupBones(VMatrix *pBoneToWorldOut, int nMaxBones, int boneMask, float currentTime)

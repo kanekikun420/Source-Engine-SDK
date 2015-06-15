@@ -8,7 +8,7 @@ public:
 		return ((Fn)VMT.GetFunction(this, indexes::GetScreenSize))(this, Width, Height);
 	}
 
-	bool GetPlayerInfo( int Index, player_info_t* PlayerInfo )
+	bool GetPlayerInfo( int Index, player_info_t* PlayerInfo )	
 	{
 		typedef bool(__thiscall* Fn)(void*, int, player_info_t*);
 		return ((Fn)VMT.GetFunction(this, indexes::GetPlayerInfo))(this, Index, PlayerInfo);
@@ -24,9 +24,9 @@ public:
 	{
 		typedef void(__thiscall* Fn)(void*, const char*);
 		return ((Fn)VMT.GetFunction(this, indexes::ClientCmd))(this, Command);
-	}
+		}
 
-	void SetViewAngles( Vector& Angles )
+	void SetViewAngles(Vector& Angles)
 	{
 		typedef void(__thiscall* Fn)(void*, Vector&);
 		return ((Fn)VMT.GetFunction(this, indexes::SetViewAngles))(this, Angles);
