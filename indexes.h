@@ -1,6 +1,7 @@
 namespace indexes
 {
 	//Client
+	int GetAllClasses;
 
 	//Engine
 	int GetScreenSize;
