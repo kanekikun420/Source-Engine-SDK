@@ -7,6 +7,9 @@ Setup like this
       void SetupIndexes()
       {
       	using namespace indexes;
+      	//Client
+      	GetAllClasses = 8;
+      	
       	//Engine
       	GetScreenSize = 5;
       	GetPlayerInfo = 8;
