@@ -1,22 +1,30 @@
+#pragma once
+#include "../../Utils.h"
 class CBaseEntity
 {
 public:
 	float Friction()
 	{
-		return *reinterpret_cast<float*>((DWORD)this + 0x0140);
+
+		static int offset = netVars->GetOffset("DT_BasePlayer", "m_flFriction");
+		return *(float*)(this + offset);
 	}
 	int GetTeamNum()
 	{
-		return *reinterpret_cast<int*>((DWORD)this + 0xF0);
+
+		static int offset = netVars->GetOffset("DT_BasePlayer", "m_iTeamNum");
+		return *(int*)(this + offset);
 	}
 	Vector Velocity()
 	{
-		return *reinterpret_cast<Vector*>((DWORD)this + 0x0110);
+		static int offset = netVars->GetOffset("DT_BasePlayer", "m_vecVelocity[0]");
+		return *(Vector*)(this + offset);
 	}
 
 	int Health()
 	{
-		return *reinterpret_cast<int*>((DWORD)this + 0xFC);
+		static int offset = netVars->GetOffset("DT_BasePlayer", "m_iHealth");
+		return *(int*)(this + offset);
 	}
 
 	int Index()
@@ -27,12 +35,15 @@ public:
 
 	int GetFlags()
 	{
-		return *reinterpret_cast<int*>((DWORD)this + 0x0100);
+		static int offset = netVars->GetOffset("DT_BasePlayer", "m_fFlags");
+		return *(int*)(this + offset);
 	}
 
 	Vector GetEyePosition()
 	{
-		Vector vecViewOffset = *reinterpret_cast<Vector*>((DWORD)this + 0x0104);
+
+		static int offset = netVars->GetOffset("DT_BasePlayer", "m_vecViewOffset[0]");
+		Vector vecViewOffset = *(Vector*)(this + offset);
 		return GetAbsOrigin() + vecViewOffset;
 	}
 
@@ -60,14 +71,12 @@ public:
 		return *reinterpret_cast<bool*>((DWORD)this + 0xE9);
 	}
 
-	float MaxSpeed()
-	{
-		return *reinterpret_cast<float*>((DWORD)this + 0x160C);
-	}
 
 	bool isAlive()
 	{
-		BYTE lifestate = *(BYTE*)((DWORD)this + 0x025B);
+
+		static int offset = netVars->GetOffset("DT_BasePlayer", "m_lifeState");
+		BYTE lifestate = *(BYTE*)((DWORD)this + offset);
 		return (lifestate == 0);
 	}
 
@@ -75,7 +84,7 @@ public:
 	{
 		void* networkable = (void*)(this + 0x8);
 		typedef int(__thiscall* OriginalFn)(PVOID);
-		return ((OriginalFn)VMT.GetFunction(this, 76))(this);
+		return ((OriginalFn)VMT.GetFunction(this, 8))(this);
 	}
 
 	bool SetupBones(VMatrix *pBoneToWorldOut, int nMaxBones, int boneMask, float currentTime)
