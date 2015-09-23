@@ -1,3 +1,4 @@
+#pragma once
 class Convar
 {
 public:

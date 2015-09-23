@@ -1,3 +1,4 @@
+#pragma once
 #define  Assert( _exp ) ((void)0)
 class __declspec(align(16))VectorAligned : public Vector
 {

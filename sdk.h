@@ -1,6 +1,7 @@
+
+#pragma once
 #pragma warning(disable : 4800)
 #pragma warning(disable : 4244)
-#pragma once
 #include <stdio.h>
 #include <vector>
 #include <string>
@@ -23,12 +24,12 @@ using namespace std;
 #include "definitions.h"
 #include "indexes.h"
 
+#include "../InputManager.h"
+
 #include "libraries\vmt.h"
 
 #include "structs\vector.h"
 #include "structs\vmatrix.h"
-#include "structs\baseentity.h"
-#include "structs\cliententlist.h"
 #include "structs\usercmd.h"
 #include "structs\playerinfo.h"
 #include "structs\engine.h"
@@ -40,17 +41,17 @@ using namespace std;
 #include "structs\crc32.h"
 #include "structs\quaternion.h"
 #include "structs\modelinfo.h"
-#include "structs\dt_common2.h"
-#include "structs\dt_recv2.h"
-#include "structs\trace.h"
 #include "structs\checksum_md5.h"
+#include "libraries\interfaces.h"
+#include "../Utils.h"
+#include "structs\baseentity.h"
+#include "structs\cliententlist.h"
+#include "structs\trace.h"
 
 #include "libraries\math.h"
 
+#include "../hooks.h"
 
-#include "libraries\interfaces.h"
-
-#include "hooks.h"
 void StartCheat();
 BOOL WINAPI DllMain(HINSTANCE Instance, DWORD Reason, LPVOID Reserved)
 {
@@ -63,9 +64,10 @@ BOOL WINAPI DllMain(HINSTANCE Instance, DWORD Reason, LPVOID Reserved)
 		HMENU hMenu = GetSystemMenu(hwnd, FALSE);
 		if (hMenu) DeleteMenu(hMenu, SC_CLOSE, MF_BYCOMMAND);
 
-		SetConsoleTitle("[BHOP]: Console");
+		SetConsoleTitle("[Enigma]: Console");
 		freopen("CONIN$", "r", stdin);
 		freopen("CONOUT$", "w", stdout);
+		printf("RUN\n");
 		Interfaces.GetInterfaces();
 		CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)StartCheat, NULL, NULL, NULL);
 	}

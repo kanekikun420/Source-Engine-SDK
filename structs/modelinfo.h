@@ -1,3 +1,4 @@
+#pragma once
 struct mstudiobbox_t
 {
 	int					bone;

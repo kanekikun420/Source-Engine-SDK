@@ -1,3 +1,4 @@
+#pragma once
 /*
 	TODO: Finish this
 */
@@ -19,6 +20,7 @@ enum
 	YAW,		// left / right
 	ROLL		// fall over
 };
+typedef Vector QAngle;
 // Math routines done in optimized assembly math package routines
 void inline SinCos(float radians, float *sine, float *cosine)
 {

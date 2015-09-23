@@ -1,3 +1,4 @@
+#pragma once
 typedef void* (*CreateInterfaceFn)(const char *Name, int *ReturnCode);
 #define IN_ATTACK					(1 << 0)
 #define IN_JUMP						(1 << 1)
